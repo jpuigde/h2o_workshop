@@ -1,3 +1,3 @@
 library(h2o)
 
-h2o.init(ip = "52.29.119.247",port =54321 )
+(h2oCluster <- h2o.init(ip = read.csv("flatfile.txt",header = F,sep = ":",stringsAsFactors = F)[1,1] ,port =54321 ))
