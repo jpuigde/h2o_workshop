@@ -6,10 +6,9 @@ output:
     highlight: espresso
     fig_height: 4.5
     fig_width: 7.2
-    
 ---
 
-# Desinstall old version of H20
+# Uninstall old version of H20
 
 <section>
 The following two commands remove any previously installed H2O packages for R.
@@ -119,12 +118,20 @@ h2o.ls()
 <section>
 
 ```{r,fig.width=6.8}
+summary( airlines.hex )[,1:4]
+airlines.hex[airlines.hex$Cancelled,"Cancelled"]
+```
+
+----
+
+```{r,fig.width=6.8}
+h2o.table(airlines.hex$Cancelled)
 dim( airlines.hex )
-summary( airlines.hex )[1:4]
 quantile( airlines.hex$Distance )
 ```
 
 ----
+
 
 Histrograms
 ```{r}
@@ -225,7 +232,7 @@ head(prediction.test)
 
 </section>
 
-
+<!--
 # H2o ensambler
 <section>
 ----
@@ -270,7 +277,7 @@ sapply(1:length(learner), function(l) cvAUC::AUC(predictions = as.data.frame(pre
 ```
 
 </section>
-
+-->
 
 # Demos
 
@@ -283,6 +290,10 @@ demo(h2o.deeplearning)
 
 showMethods(classes="H2OFrame")
 ```
+
+# 
+
+<img src ="/home/aia4/01-projects/04 - My Tutorials/02 - h2o_workshop/h2o_or_no_h2o.jpg" />
 
 
 

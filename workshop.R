@@ -44,21 +44,28 @@ airlinesURL = "https://s3.amazonaws.com/h2o-airlines-unpacked/allyears2k.csv"
 
 airlines.hex = h2o.importFile( path = airlinesURL,destination_frame="airlines.hex" )
 
+
 ## ----fig.width=6.8-------------------------------------------------------
 head( airlines.hex , 3 )[1:10]
 
 ## ----fig.width=6.8-------------------------------------------------------
 h2o.ls()
 
-## ----fig.width=6.8-------------------------------------------------------
+## ----Basic manipulations-------------------------------------------------------
+# Select and filter like df
+summary( airlines.hex )[,1:4]
+airlines.hex[airlines.hex$Cancelled,"Cancelled"]
+h2o.table(airlines.hex$Cancelled)
 dim( airlines.hex )
-summary( airlines.hex )[1:4]
 quantile( airlines.hex$Distance )
+# h2o.merge(x, y, all.x = TRUE, all.y = FALSE)
+
 
 ## ------------------------------------------------------------------------
 h2o.hist( airlines.hex$Distance )
 
 ## ----fig.width=6.8,fig.height=4------------------------------------------
+# GroupBy and agg
 (airlines.hex$IsDepDelayed <- as.factor(airlines.hex$IsDepDelayed ))[1:10]
 (MeanOfCancelFlightDOW <- h2o.ddply(airlines.hex, "DayOfWeek", function(x){ mean( x[,12] ) }))
 
@@ -144,3 +151,5 @@ demo(h2o.deeplearning)
 
 showMethods(classes="H2OFrame")
 
+
+airlines.hex[,12]
